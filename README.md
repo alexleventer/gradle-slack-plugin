@@ -4,8 +4,9 @@
 ## Example Usage
 ```
 slack {
-    webhookUrl = "https://slack.com"
-    avatar = "GradleBot"
+    webhookUrl = "https://webhook.slack.com"
+    username "test"
+    shouldMonitor "compileJava", "build"
 }
 
 ```
