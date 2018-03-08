@@ -9,10 +9,8 @@ import org.gradle.api.tasks.TaskState
 open class SlackPlugin: Plugin<Project> {
     override fun apply(project: Project) {
         val extension:SlackExtension = project.extensions.create("slack", SlackExtension::class.java, project)
-
         project.afterEvaluate {
             project.gradle.taskGraph.addTaskExecutionListener(TaskExecutionListener(extension))
-
         }
     }
 }
@@ -20,7 +18,6 @@ open class SlackPlugin: Plugin<Project> {
 class TaskExecutionListener(extension: SlackExtension) : TaskExecutionListener {
     private val webhookUrl = extension.webhookUrl
     private val slackExtension : SlackExtension = extension
-    private val username = extension.username
     private val shouldMonitor = extension.shouldMonitor
     private val consoleOutput = StringBuilder()
 
