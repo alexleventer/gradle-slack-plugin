@@ -17,7 +17,7 @@ open class SlackPlugin: Plugin<Project> {
 
 class TaskExecutionListener(extension: SlackExtension) : TaskExecutionListener {
     private val webhookUrl = extension.webhookUrl
-    private val slackExtension : SlackExtension = extension
+    private val slackExtension: SlackExtension = extension
     private val shouldMonitor = extension.shouldMonitor
     private val consoleOutput = StringBuilder()
 

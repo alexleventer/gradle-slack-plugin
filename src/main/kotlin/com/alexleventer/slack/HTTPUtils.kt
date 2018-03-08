@@ -10,7 +10,7 @@ open class HTTPUtils {
     private val client = OkHttpClient()
 
     fun post(url:String, json:String): String {
-        val body : RequestBody = RequestBody.create(JSON, json)
+        val body: RequestBody = RequestBody.create(JSON, json)
         val request = Request.Builder()
                 .url(url)
                 .post(body)
