@@ -16,8 +16,11 @@ open class SlackMessageBuilder {
     }
 
     fun buildJSON() : String {
-        val status = if(taskState.failure != null) "Failure" else "Success"
-        val attachmentColor = if(status.equals("Failure")) "#e74c3c" else "#27ae60"
+        val failure : Throwable? = taskState.failure
+        val success : Boolean = failure === null
+        val status = if(success) "Success" else "Failure"
+        val attachmentColor = if(success) "#27ae60" else "#e74c3c"
+
         return """{
             "text": "Your Gradle Build is Complete:",
             "username" : "${extension.username}",
