@@ -1,12 +1,10 @@
 # Gradle Slack Plugin
 
-
 ## Example Usage
 ```
 slack {
-    webhookUrl "https://webhook.slack.com"
-    username "test"
+    webhookUrl "https://hooks.slack.com/services/"
+    username "Gradle"
     shouldMonitor "compileJava", "build"
 }
-
 ```
