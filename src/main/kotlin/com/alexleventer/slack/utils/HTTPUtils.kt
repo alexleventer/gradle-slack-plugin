@@ -1,4 +1,4 @@
-package com.alexleventer.slack
+package com.alexleventer.slack.utils
 
 import okhttp3.MediaType
 import okhttp3.OkHttpClient

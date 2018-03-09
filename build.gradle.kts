@@ -18,6 +18,7 @@ buildscript {
     dependencies {
         classpath(kotlinModule("gradle-plugin", kotlinVersion))
         classpath("com.squareup.okhttp3:okhttp:3.10.0")
+        classpath("com.google.code.gson:gson:2.8.2")
         classpath(gradleApi())
     }
 }
@@ -46,6 +47,7 @@ repositories {
 dependencies {
     compile(kotlinModule("stdlib-jdk8", kotlinVersion))
     compile("com.squareup.okhttp3:okhttp:3.10.0")
+    compile("com.google.code.gson:gson:2.8.2")
     implementation(gradleApi())
 
     testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")

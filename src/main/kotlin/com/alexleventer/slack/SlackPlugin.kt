@@ -31,7 +31,7 @@ class TaskExecutionListener(extension: SlackExtension) : TaskExecutionListener {
         val slack = SlackApi(webhookUrl)
         if (isMonitored(task)) {
             val message = SlackMessageBuilder(task, state, consoleOutput.toString(), slackExtension)
-            slack.createMessage(message.buildJSON())
+            slack.createMessage(message.buildSlackMessageJSONBody())
         }
     }
 
