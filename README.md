@@ -1,6 +1,6 @@
 # Gradle Slack Plugin
 
-## Example Usage
+## Example Usage:
 ```
 slack {
     webhookUrl "https://hooks.slack.com/services/"
@@ -9,5 +9,12 @@ slack {
 }
 ```
 
-## Example Message
+## Installation:
+```
+plugins {
+  id "com.alexleventer.slack" version "1.0.3"
+}
+```
+
+## Example Message:
 ![Example Message](/example-message.png)
