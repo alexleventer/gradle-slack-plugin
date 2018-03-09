@@ -6,6 +6,11 @@ import java.net.HttpURLConnection
 group = "com.alexleventer.gradle"
 version = "1.0.1"
 
+apply {
+    plugin("java")
+    plugin("kotlin")
+}
+
 buildscript {
     var kotlinVersion: String by extra
     kotlinVersion = "1.2.30"
@@ -23,12 +28,6 @@ buildscript {
     }
 }
 
-apply {
-    plugin("java")
-    plugin("kotlin")
-    plugin("maven-publish")
-}
-
 plugins {
     java
 }
@@ -42,7 +41,6 @@ val kotlinVersion: String by extra
 repositories {
     jcenter()
 }
-
 
 dependencies {
     compile(kotlinModule("stdlib-jdk8", kotlinVersion))
