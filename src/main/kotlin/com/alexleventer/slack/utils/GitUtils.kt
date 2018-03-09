@@ -14,20 +14,8 @@ class GitUtils {
             return "git log -1 --format=%ae".runCommand()
         }
 
-        fun getBranchName(): String? {
-            return "git rev-parse --abbrev-ref HEAD".runCommand()
-        }
-
-        fun getLastCommitShortenedHash(): String? {
-            return "git log -1 --format:%h".runCommand()
-        }
-
         fun getLastCommitMessage(): String? {
             return "git log -1 --format=%B".runCommand()
-        }
-
-        fun getGitRemote(): String? {
-            return "git remote -v".runCommand()
         }
 
         private fun String.runCommand(): String? {
