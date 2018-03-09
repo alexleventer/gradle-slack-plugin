@@ -64,11 +64,13 @@ tasks.withType<KotlinCompile> {
 pluginBundle {
     website = "https://github.com/alexleventer/gradle-slack-plugin"
     vcsUrl = "https://github.com/alexleventer/gradle-slack-plugin"
-    description = "Post messages to Slack after your Gradle builds complete"
-    tags = mutableListOf("gradle", "slack", "kotlin")
 
-    plugins.create("Gradle Slack Plugin") {
-        id = "com.alexleventer.slack"
-        displayName = "Gradle Slack Plugin"
+    (plugins) {
+        "SlackPlugin" {
+            id = "com.alexleventer.slack"
+            displayName = "Gradle Slack Plugin"
+            description = "Post messages to Slack after your Gradle builds complete"
+            tags = listOf("gradle", "slack", "kotlin")
+        }
     }
 }
