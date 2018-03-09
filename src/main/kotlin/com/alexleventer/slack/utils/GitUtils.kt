@@ -19,11 +19,11 @@ class GitUtils {
         }
 
         fun getLastCommitShortenedHash(): String? {
-            return "git log -1 --pretty=format:%h".runCommand()
+            return "git log -1 --format:%h".runCommand()
         }
 
         fun getLastCommitMessage(): String? {
-            return "git log -1 --pretty=%B".runCommand()
+            return "git log -1 --format=%B".runCommand()
         }
 
         fun getGitRemote(): String? {
