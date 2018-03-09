@@ -3,8 +3,7 @@ package com.alexleventer.slack.utils
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class GitUtils {
-
+class GitUtil {
     companion object {
         fun getLastCommitAuthorName(): String? {
             return "git log -1 --format=%an".runCommand()

@@ -1,8 +1,6 @@
 package com.alexleventer.slack
 
-import org.gradle.api.Project
-
-open class SlackExtension(val project: Project) {
+open class SlackExtension {
     var webhookUrl: String = ""
     var username: String = ""
     var shouldMonitor: List<Any> = mutableListOf()

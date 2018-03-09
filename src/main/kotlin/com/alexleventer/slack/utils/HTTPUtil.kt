@@ -5,12 +5,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-open class HTTPUtils {
-    private val JSON = MediaType.parse("application/json; charset=utf-8")
+open class HTTPUtil {
     private val client = OkHttpClient()
 
     fun post(url:String, json:String): String {
-        val body: RequestBody = RequestBody.create(JSON, json)
+        val body: RequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json)
         val request = Request.Builder()
                 .url(url)
                 .post(body)
