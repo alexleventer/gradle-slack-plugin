@@ -25,7 +25,7 @@ open class SlackMessageBuilder {
         val success: Boolean = failure === null
         val status = if (success) "Success" else "Failure"
         val attachmentColor = if (success) "good" else "danger"
-        val graphephantPath = "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/gradlephant.png"
+        val graphephantPath = "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/assets/gradlephant.png"
         val authorAvatar = "https://avatars.io/gravatar/${GitUtils.getLastCommitAuthorEmail()}"
 
         json.addProperty("text", "Your Gradle Build is Complete:")

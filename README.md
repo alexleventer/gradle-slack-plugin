@@ -17,4 +17,4 @@ plugins {
 ```
 
 ## Example Message:
-![Example Message](/example-message.png)
+![Example Message](/assets/example-message.png)
