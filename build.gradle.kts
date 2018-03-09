@@ -4,7 +4,7 @@ import org.gradle.api.tasks.SourceSet
 import java.net.HttpURLConnection
 
 group = "com.alexleventer.gradle"
-version = "1.0.3"
+version = "1.0.4"
 
 apply {
     plugin("java")
