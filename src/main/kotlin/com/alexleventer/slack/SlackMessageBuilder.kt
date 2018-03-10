@@ -12,28 +12,26 @@ open class SlackMessageBuilder(private var task: Task, private var taskState: Ta
     private var json: JsonObject = JsonObject()
 
     fun buildSlackMessageJSONBody(): String {
-        val failure: Throwable? = taskState.failure
-        val success: Boolean = failure === null
-        val status = if (success) "Success" else "Failure"
-        val attachmentColor = if (success) "good" else "danger"
-        val graphephantPath = "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/assets/gradlephant.png"
+        val success = buildSucceeded(taskState)
+
+        val gradlephantPath = "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/assets/gradlephant.png"
         val authorAvatar = "https://avatars.io/gravatar/${GitUtil.getLastCommitAuthorEmail()}"
 
         json.addProperty("text", "Your Gradle Build is Complete:")
-        json.addProperty("username", extension.username)
-        json.addProperty("icon_url", graphephantPath)
+        json.addProperty("username", if (extension.username == null) "Gradle" else extension.username)
+        json.addProperty("icon_url", if (extension.iconUrl == null) gradlephantPath else extension.iconUrl)
         json.addProperty("mrkdwn", true)
 
         val attachments = JsonArray()
         val buildAttachment = JsonObject()
-        buildAttachment.addProperty("color", attachmentColor)
+        buildAttachment.addProperty("color", if (success) "good" else "danger")
         buildAttachment.addProperty("footer", "Gradle Build")
         buildAttachment.addProperty("author_name", GitUtil.getLastCommitAuthorName())
         buildAttachment.addProperty("title", GitUtil.getLastCommitMessage())
         buildAttachment.addProperty("title_link", "")
         buildAttachment.addProperty("author_icon", authorAvatar)
         buildAttachment.addProperty("author_link", "")
-        buildAttachment.addProperty("footer_icon", graphephantPath)
+        buildAttachment.addProperty("footer_icon", gradlephantPath)
         buildAttachment.addProperty("ts", Instant.now().epochSecond)
 
         val fields = JsonArray()
@@ -44,7 +42,7 @@ open class SlackMessageBuilder(private var task: Task, private var taskState: Ta
 
         val statusField = JsonObject()
         statusField.addProperty("title", "Status")
-        statusField.addProperty("value", status)
+        statusField.addProperty("value", if (success) "Success" else "Failure")
         statusField.addProperty("short", true)
         fields.add(taskField)
         fields.add(statusField)
@@ -54,5 +52,10 @@ open class SlackMessageBuilder(private var task: Task, private var taskState: Ta
         json.add("attachments", attachments)
 
         return json.toString()
+    }
+
+    private fun buildSucceeded(taskState: TaskState): Boolean {
+        val failure: Throwable? = taskState.failure
+        return failure === null
     }
 }

@@ -8,7 +8,7 @@ import org.gradle.api.tasks.TaskState
 
 open class SlackPlugin: Plugin<Project> {
     override fun apply(project: Project) {
-        val extension:SlackExtension = project.extensions.create("slack", SlackExtension::class.java, project)
+        val extension:SlackExtension = project.extensions.create("slack", SlackExtension::class.java)
         project.afterEvaluate {
             project.gradle.taskGraph.addTaskExecutionListener(TaskExecutionListener(extension))
         }
