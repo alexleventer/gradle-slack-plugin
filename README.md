@@ -14,13 +14,20 @@ slack {
 ## Installation:
 ```
 plugins {
-  id "com.alexleventer.slack" version "1.0.3"
+    id "com.alexleventer.slack" version "1.0.3"
+}
+
+slack {
+    webhookUrl "https://hooks.slack.com/services/
+    username "Gradle"
+    shouldMonitor "build", "test"
 }
 ```
 
 ## Extension Properties:
-| Property Name | Type          | Default Value   |
-| ------------- |:-------------:| ---------------:|
-| `webhookurl`  | String        | ""              |
-| `username`    | String        | Gradle          |
-| `iconUrl`     | String        | Gradlephant.png |
+| Property Name      | Type          | Default Value   |
+| ------------------ |:-------------:| ---------------:|
+| `webhookUrl`       | String        | ""              |
+| `username`         | String        | Gradle          |
+| `iconUrl`          | String        | Gradlephant.png |
+| `shouldMonitor`    | List          | []              |
