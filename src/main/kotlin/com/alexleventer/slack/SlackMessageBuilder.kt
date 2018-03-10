@@ -7,8 +7,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import java.time.Instant
 
-open class SlackMessageBuilder(private var task: Task, private var taskState: TaskState,
-                               private var consoleOutput: String, private var extension: SlackExtension) {
+open class SlackMessageBuilder(private var task: Task, private var taskState: TaskState, private var extension: SlackExtension) {
     private var json: JsonObject = JsonObject()
 
     fun buildSlackMessageJSONBody(): String {
