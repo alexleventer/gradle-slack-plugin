@@ -20,7 +20,8 @@ plugins {
 ![Example Message](/assets/example-message.png)
 
 ## Extension Properties:
-Property Name | Type | Default Value
-`webhookUrl` | String | ""
-`username` | String | Gradle
-`iconUrl` | String | Gradlephant.png
+| Property Name | Type          | Default Value   |
+| ------------- |:-------------:| ---------------:|
+| `webhookurl`  | String        | ""              |
+| `username`    | String        | Gradle          |
+| `iconUrl`     | String        | Gradlephant.png |
