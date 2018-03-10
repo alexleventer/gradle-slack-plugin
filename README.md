@@ -1,5 +1,7 @@
 # Gradle Slack Plugin
 
+![Example Message](/assets/example-message.png)
+
 ## Example Usage:
 ```
 slack {
@@ -15,9 +17,6 @@ plugins {
   id "com.alexleventer.slack" version "1.0.3"
 }
 ```
-
-## Example Message:
-![Example Message](/assets/example-message.png)
 
 ## Extension Properties:
 | Property Name | Type          | Default Value   |
