@@ -25,9 +25,10 @@ slack {
 ```
 
 ## Extension Properties:
-| Property Name      | Type          | Default Value   |
-| ------------------ |:-------------:| ---------------:|
-| `webhookUrl`       | String        | ""              |
-| `username`         | String        | Gradle          |
-| `iconUrl`          | String        | Gradlephant.png |
-| `shouldMonitor`    | List          | []              |
+| Property Name      | Type          | Default Value                       |
+| ------------------ |:-------------:| -----------------------------------:|
+| `webhookUrl`       | String        | ""                                  |
+| `username`         | String?       | Gradle                              |
+| `iconUrl`          | String?       | Gradlephant.png                     |
+| `shouldMonitor`    | List<String>  | []                                  |
+| `introText`        | String?       | "Your Gradle Build is Complete:"    |

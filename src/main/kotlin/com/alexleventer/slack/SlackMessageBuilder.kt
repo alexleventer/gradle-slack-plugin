@@ -17,7 +17,7 @@ open class SlackMessageBuilder(private var task: Task, private var taskState: Ta
         val gradlephantPath = "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/assets/gradlephant.png"
         val authorAvatar = "https://avatars.io/gravatar/${GitUtil.getLastCommitAuthorEmail()}"
 
-        json.addProperty("text", "Your Gradle Build is Complete:")
+        json.addProperty("text", if (extension.introText == null) "Your Gradle Build is Complete:" else extension.introText)
         json.addProperty("username", if (extension.username == null) "Gradle" else extension.username)
         json.addProperty("icon_url", if (extension.iconUrl == null) gradlephantPath else extension.iconUrl)
         json.addProperty("mrkdwn", true)
