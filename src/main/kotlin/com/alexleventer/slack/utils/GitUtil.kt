@@ -3,13 +3,13 @@ package com.alexleventer.slack.utils
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-class GitUtil(private val workingDir: File) {
+open class GitUtil(private val workingDir: File) {
 
-    fun lastCommitAuthorName(): String? = run("git", "log", "-1", "--format=%an")
+    open fun lastCommitAuthorName(): String? = run("git", "log", "-1", "--format=%an")
 
-    fun lastCommitAuthorEmail(): String? = run("git", "log", "-1", "--format=%ae")
+    open fun lastCommitAuthorEmail(): String? = run("git", "log", "-1", "--format=%ae")
 
-    fun lastCommitMessage(): String? = run("git", "log", "-1", "--format=%B")
+    open fun lastCommitMessage(): String? = run("git", "log", "-1", "--format=%B")
 
     private fun run(vararg command: String): String? = try {
         val proc = ProcessBuilder(*command)

@@ -25,6 +25,7 @@ class SlackPluginTest {
         assertThat(ext.introText.get()).isEqualTo("Your Gradle Build is Complete:")
         assertThat(ext.shouldMonitor.get()).isEmpty()
         assertThat(ext.iconUrl.get()).contains("gradlephant.png")
+        assertThat(ext.notifyOnBuildFinished.get()).isFalse()
     }
 
     @Test
