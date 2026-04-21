@@ -1,13 +1,28 @@
 package com.alexleventer.slack
 
-open class SlackExtension {
-    var webhookUrl: String = ""
-    var username: String? = null
-    var iconUrl: String? = null
-    var introText: String? = null
-    var shouldMonitor: List<Any> = mutableListOf()
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
 
-    fun shouldMonitor(vararg task: Any) {
-        this.shouldMonitor = task.asList()
+abstract class SlackExtension {
+    abstract val webhookUrl: Property<String>
+    abstract val username: Property<String>
+    abstract val iconUrl: Property<String>
+    abstract val introText: Property<String>
+    abstract val shouldMonitor: ListProperty<String>
+
+    init {
+        username.convention("Gradle")
+        iconUrl.convention(DEFAULT_ICON_URL)
+        introText.convention("Your Gradle Build is Complete:")
+        shouldMonitor.convention(emptyList())
+    }
+
+    fun shouldMonitor(vararg tasks: String) {
+        shouldMonitor.set(tasks.toList())
+    }
+
+    companion object {
+        const val DEFAULT_ICON_URL =
+            "https://raw.githubusercontent.com/alexleventer/gradle-slack-plugin/master/assets/gradlephant.png"
     }
 }

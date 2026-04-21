@@ -1,11 +1,9 @@
 package com.alexleventer.slack
 
-import com.alexleventer.slack.utils.HTTPUtil
+import com.alexleventer.slack.utils.HttpClientUtil
 
 open class SlackApi(private val webhookUrl: String) {
-    private var client = HTTPUtil()
+    private val http = HttpClientUtil()
 
-    fun createMessage(json: String): String {
-        return client.post(webhookUrl, json)
-    }
+    fun postMessage(json: String): Int = http.postJson(webhookUrl, json)
 }
