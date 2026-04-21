@@ -42,13 +42,31 @@ slack {
 
 ## Configuration
 
-| Property        | Type           | Default                                            | Description                                         |
-| --------------- | -------------- | -------------------------------------------------- | --------------------------------------------------- |
-| `webhookUrl`    | `String`       | _required_                                         | Slack incoming-webhook URL.                         |
-| `shouldMonitor` | `List<String>` | `[]`                                               | Task names whose completion triggers a notification. |
-| `username`     | `String`       | `"Gradle"`                                         | Display name of the bot in Slack.                   |
-| `iconUrl`      | `String`       | Gradlephant PNG                                    | Avatar URL for the bot.                             |
-| `introText`    | `String`       | `"Your Gradle Build is Complete:"`                 | Leading text above the attachment.                  |
+| Property                | Type           | Default                                | Description                                                                                       |
+| ----------------------- | -------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `webhookUrl`            | `String`       | _required_                             | Slack incoming-webhook URL.                                                                       |
+| `shouldMonitor`         | `List<String>` | `[]`                                   | Task names whose completion triggers a notification (per-task mode).                              |
+| `notifyOnBuildFinished` | `Boolean`      | `false`                                | When `true`, send a single summary notification after the whole build finishes instead of per task. |
+| `username`              | `String`       | `"Gradle"`                             | Display name of the bot in Slack.                                                                 |
+| `iconUrl`               | `String`       | Gradlephant PNG                        | Avatar URL for the bot.                                                                           |
+| `introText`             | `String`       | `"Your Gradle Build is Complete:"`     | Leading text above the attachment.                                                                |
+
+### Per-build vs. per-task notifications
+
+By default the plugin sends a message each time a task listed in `shouldMonitor`
+completes. If you'd rather have a single summary at the end of the whole build —
+with an overall Success/Failure status and task counts — set
+`notifyOnBuildFinished = true`:
+
+```kotlin
+slack {
+    webhookUrl.set(providers.environmentVariable("SLACK_WEBHOOK_URL"))
+    notifyOnBuildFinished = true
+}
+```
+
+In this mode `shouldMonitor` is ignored — every task the build runs contributes
+to the summary.
 
 ### Keeping the webhook URL out of source control
 

@@ -21,6 +21,7 @@ abstract class SlackPlugin : Plugin<Project> {
             spec.parameters.iconUrl.set(extension.iconUrl)
             spec.parameters.introText.set(extension.introText)
             spec.parameters.shouldMonitor.set(extension.shouldMonitor)
+            spec.parameters.notifyOnBuildFinished.set(extension.notifyOnBuildFinished)
             spec.parameters.projectDir.set(project.rootDir.absolutePath)
         }
 
