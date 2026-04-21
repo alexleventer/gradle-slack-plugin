@@ -18,7 +18,7 @@ Apply the plugin in your `build.gradle.kts`:
 
 ```kotlin
 plugins {
-    id("com.alexleventer.slack") version "2.0.0"
+    id("com.alexleventer.slack") version "2.1.0"
 }
 
 slack {
@@ -31,7 +31,7 @@ Or in Groovy (`build.gradle`):
 
 ```groovy
 plugins {
-    id 'com.alexleventer.slack' version '2.0.0'
+    id 'com.alexleventer.slack' version '2.1.0'
 }
 
 slack {
