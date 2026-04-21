@@ -1,36 +1,30 @@
 package com.alexleventer.slack.utils
 
-import java.io.IOException
+import java.io.File
 import java.util.concurrent.TimeUnit
 
-class GitUtil {
-    companion object {
-        fun getLastCommitAuthorName(): String? {
-            return "git log -1 --format=%an".runCommand()
-        }
+class GitUtil(private val workingDir: File) {
 
-        fun getLastCommitAuthorEmail(): String? {
-            return "git log -1 --format=%ae".runCommand()
-        }
+    fun lastCommitAuthorName(): String? = run("git", "log", "-1", "--format=%an")
 
-        fun getLastCommitMessage(): String? {
-            return "git log -1 --format=%B".runCommand()
-        }
+    fun lastCommitAuthorEmail(): String? = run("git", "log", "-1", "--format=%ae")
 
-        private fun String.runCommand(): String? {
-            try {
-                val parts = this.split("\\s".toRegex())
-                val proc = ProcessBuilder(*parts.toTypedArray())
-                        .redirectOutput(ProcessBuilder.Redirect.PIPE)
-                        .redirectError(ProcessBuilder.Redirect.PIPE)
-                        .start()
+    fun lastCommitMessage(): String? = run("git", "log", "-1", "--format=%B")
 
-                proc.waitFor(60, TimeUnit.MINUTES)
-                return proc.inputStream.bufferedReader().readText()
-            } catch(e: IOException) {
-                e.printStackTrace()
-                return null
-            }
+    private fun run(vararg command: String): String? = try {
+        val proc = ProcessBuilder(*command)
+            .directory(workingDir)
+            .redirectOutput(ProcessBuilder.Redirect.PIPE)
+            .redirectError(ProcessBuilder.Redirect.PIPE)
+            .start()
+
+        if (!proc.waitFor(10, TimeUnit.SECONDS)) {
+            proc.destroy()
+            null
+        } else {
+            proc.inputStream.bufferedReader().readText().trim().ifEmpty { null }
         }
+    } catch (_: Exception) {
+        null
     }
 }
